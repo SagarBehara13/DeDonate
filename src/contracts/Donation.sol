@@ -10,6 +10,7 @@ contract Donation {
     string name;
     uint price;
     address payable owner;
+    address payable donator;
     bool donated;
     string category;
     string story;
@@ -44,7 +45,7 @@ contract Donation {
     require(_price > 0);
 
     requestCount ++;
-    requests[requestCount] = Request(requestCount, _name, _price, msg.sender, false, _category, _story, _image);
+    requests[requestCount] = Request(requestCount, _name, _price, msg.sender, msg.sender, false, _category, _story, _image);
     emit productCreated(requestCount, _name, _price, msg.sender, false, _category, _story, _image);
   }
 
@@ -56,7 +57,8 @@ contract Donation {
     require(!_request.donated);
     require(_seller != msg.sender);
 
-    _request.owner = msg.sender;
+    _request.owner = _seller;
+    _request.donator = msg.sender;
     _request.donated = true;
     requests[_id] = _request;
     _seller.transfer(msg.value);

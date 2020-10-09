@@ -69,7 +69,8 @@ class Main extends Component {
               <th scope="col">#</th>
               <th scope="col">Name</th>
               <th scope="col">Price</th>
-              <th scope="col">Owner</th>
+              <th scope="col">Requester</th>
+              <th scope="col">Donator</th>
               <th scope="col">Category</th>
               <th scope="col">Story</th>
               <th scope="col">Image</th>
@@ -78,15 +79,25 @@ class Main extends Component {
           </thead>
           <tbody id="requestList">
             { this.props.requests.map((request, key) => {
+              let donator
+
+              if(request.owner === request.donator){
+                console.log("c seller", true);
+                donator = "No Donator"
+              } else {
+                donator = request.donator
+              }
+
               return(
                 <tr key={key}>
                   <th scope="row">{ request.id.toString() }</th>
                   <td>{ request.name }</td>
                   <td>{ window.web3.utils.fromWei(request.price.toString(), 'Ether') } Eth </td>
                   <td>{ request.owner }</td>
+                  <td>{ donator }</td>
                   <td>{ request.category }</td>
                   <td>{ request.story }</td>
-                  <td>{ request.Image}</td>
+                  <td>{ request.image}</td>
                   <td>
                     { !request.donated
                       ? <button
