@@ -14,13 +14,13 @@ const Explore = () => {
   }
 
   return (
-    <div className="container bg">
-      <div className="row">
-          <div className="col-12">
-            <h3 className="exp-heading">Select the criteria from below tabs whom you would like to donate to..</h3>
-            <hr />
-          </div>
-      </div>
+    <div className="container bg explore-main">
+      {/*<div className="row">*/}
+      {/*    <div className="col-12">*/}
+      {/*      <h3 className="exp-heading">Select the criteria from below tabs whom you would like to donate to..</h3>*/}
+      {/*      <hr />*/}
+      {/*    </div>*/}
+      {/*</div>*/}
       <div className="row">
       <div className="col-12">
         <Nav tabs>
@@ -51,30 +51,144 @@ const Explore = () => {
         </Nav>
         <TabContent activeTab={activeTab}>
           <TabPane tabId="1">
-            <Row>
-            <Col sm="4">
-                <Card>
-                  <img width="100%" height="250px" src={logo} alt="Card cap" />
-                  <CardBody>
-                    <CardTitle>Special Title Treatment</CardTitle>
-                    <CardSubtitle>Card subtitle</CardSubtitle>
+            <div className="row tabs-main-container">
+            <Col sm="12" md="6">
+              <div className="custom-card">
+                <div className="header-card">
+                  <img width="130px" height="130px" src={logo} alt="Card cap" className="card-image"/>
+                  <div className="header-card-content">
+                    <p className="name">Special Title Treatment</p>
+                    <p className="price">Card subtitle</p>
+                    <Button color="info" className="donate-btn">
+                      {/*<i className="fa fa-usd fa-lg"></i> */}
+                      Donate Now</Button>
+                  </div>
+                </div>
+                  <div className="body-card">
                     <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
-                    <Button color="info"><i className="fa fa-usd fa-lg"></i> Donate Now</Button>
-                  </CardBody>
-                </Card>
+                  </div>
+              </div>
               </Col>
-              <Col sm="4">
-                <Card>
-                <CardImg width="100%" height="250px" src={logo1} alt="Card image cap" />
-                  <CardBody>
-                    <CardTitle>Special Title Treatment</CardTitle>
-                    <CardSubtitle>Card subtitle</CardSubtitle>
-                    <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
-                    <Button color="info"><i className="fa fa-usd fa-lg"></i> Donate Now</Button>
-                  </CardBody>
-                </Card>
-              </Col>
-            </Row>
+            <Col sm="12" md="6">
+              <div className="custom-card">
+                <div className="header-card">
+                  <img width="130px" height="130px" src={logo} alt="Card cap" className="card-image"/>
+                  <div className="header-card-content">
+                    <p className="name">Special Title Treatment</p>
+                    <p className="price">Card subtitle</p>
+                    <Button color="info" className="donate-btn">
+                      {/*<i className="fa fa-usd fa-lg"></i> */}
+                      Donate Now</Button>
+                  </div>
+                </div>
+                <div className="body-card">
+                  <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
+                </div>
+              </div>
+            </Col>
+            <Col sm="12" md="6">
+              <div className="custom-card">
+                <div className="header-card">
+                  <img width="130px" height="130px" src={logo} alt="Card cap" className="card-image"/>
+                  <div className="header-card-content">
+                    <p className="name">Special Title Treatment</p>
+                    <p className="price">Card subtitle</p>
+                    <Button color="info" className="donate-btn">
+                      {/*<i className="fa fa-usd fa-lg"></i> */}
+                      Donate Now</Button>
+                  </div>
+                </div>
+                <div className="body-card">
+                  <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
+                </div>
+              </div>
+            </Col>
+            <Col sm="12" md="6">
+              <div className="custom-card">
+                <div className="header-card">
+                  <img width="130px" height="130px" src={logo} alt="Card cap" className="card-image"/>
+                  <div className="header-card-content">
+                    <p className="name">Special Title Treatment</p>
+                    <p className="price">Card subtitle</p>
+                    <Button color="info" className="donate-btn">
+                      {/*<i className="fa fa-usd fa-lg"></i> */}
+                      Donate Now</Button>
+                  </div>
+                </div>
+                <div className="body-card">
+                  <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
+                </div>
+              </div>
+            </Col>
+            <Col sm="12" md="6">
+              <div className="custom-card">
+                <div className="header-card">
+                  <img width="130px" height="130px" src={logo} alt="Card cap" className="card-image"/>
+                  <div className="header-card-content">
+                    <p className="name">Special Title Treatment</p>
+                    <p className="price">Card subtitle</p>
+                    <Button color="info" className="donate-btn">
+                      {/*<i className="fa fa-usd fa-lg"></i> */}
+                      Donate Now</Button>
+                  </div>
+                </div>
+                <div className="body-card">
+                  <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
+                </div>
+              </div>
+            </Col>
+            <Col sm="12" md="6">
+              <div className="custom-card">
+                <div className="header-card">
+                  <img width="130px" height="130px" src={logo} alt="Card cap" className="card-image"/>
+                  <div className="header-card-content">
+                    <p className="name">Special Title Treatment</p>
+                    <p className="price">Card subtitle</p>
+                    <Button color="info" className="donate-btn">
+                      {/*<i className="fa fa-usd fa-lg"></i> */}
+                      Donate Now</Button>
+                  </div>
+                </div>
+                <div className="body-card">
+                  <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
+                </div>
+              </div>
+            </Col>
+            <Col sm="12" md="6">
+              <div className="custom-card">
+                <div className="header-card">
+                  <img width="130px" height="130px" src={logo} alt="Card cap" className="card-image"/>
+                  <div className="header-card-content">
+                    <p className="name">Special Title Treatment</p>
+                    <p className="price">Card subtitle</p>
+                    <Button color="info" className="donate-btn">
+                      {/*<i className="fa fa-usd fa-lg"></i> */}
+                      Donate Now</Button>
+                  </div>
+                </div>
+                <div className="body-card">
+                  <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
+                </div>
+              </div>
+            </Col>
+            <Col sm="12" md="6">
+              <div className="custom-card">
+                <div className="header-card">
+                  <img width="130px" height="130px" src={logo} alt="Card cap" className="card-image"/>
+                  <div className="header-card-content">
+                    <p className="name">Special Title Treatment</p>
+                    <p className="price">Card subtitle</p>
+                    <Button color="info" className="donate-btn">
+                      {/*<i className="fa fa-usd fa-lg"></i> */}
+                      Donate Now</Button>
+                  </div>
+                </div>
+                <div className="body-card">
+                  <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
+                </div>
+              </div>
+            </Col>
+            </div>
           </TabPane>
           <TabPane tabId="2">
             <Row>

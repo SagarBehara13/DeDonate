@@ -5,18 +5,18 @@ class Request extends Component {
   render() {
     return (
      <div className="container">
-       <div className="col-12 form" id="request">
-        <h3 className="form-head">Are you talented & Looking for donations?</h3>
+       <div className="" id="request">
+        <h4 className="form-head">Are you talented & Looking for donations?</h4>
         <h5 className="form-subhead">Provide us your details and let us give you the chance to meet your donors!!</h5>
-        <Form onSubmit={this.handleLogin}>
+        <Form onSubmit={this.handleLogin} className="main-form">
             <FormGroup>
-                <Label htmlFor="name">Full Name</Label>
+                <Label htmlFor="name" className="form-label">Full Name</Label>
                 <Input type="text" id="name" name="name" 
-                    innerRef={(input) => this.name = input}
+                    innerRef={(input) => this.name = input} placeholder="Enter your name here"
                 />
             </FormGroup>
             <FormGroup>
-              <Label htmlFor="criteria">Criteria</Label>
+              <Label htmlFor="criteria" className="form-label">Criteria</Label>
               <Input type="select" name="criteria" id="criteria"
                     innerRef={(input) => this.criteria = input}>
                 <option>Education</option>
@@ -25,13 +25,13 @@ class Request extends Component {
               </Input>
             </FormGroup>
             <FormGroup>
-              <Label htmlFor="story">Tell us about yourself</Label>
+              <Label htmlFor="story" className="form-label">Tell us about yourself</Label>
               <Input type="textarea" rows={10} columns={50} name="story" id="story" 
-                    innerRef={(input) => this.story = input}
+                    innerRef={(input) => this.story = input} placeholder="Describe in short why you need this" maxLength={200}
               />
             </FormGroup>
             <FormGroup>
-              <Label htmlFor="exampleFile">Passport sized photo</Label>
+              <Label htmlFor="exampleFile" className="form-label">Passport sized photo</Label>
               <Input type="file" name="photo" id="photo" />
               <FormText color="muted">
                 Upload your recent passport sized photo(jpg/png)

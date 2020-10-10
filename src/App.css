@@ -1,75 +1,138 @@
+*{
+  font-family: Georgia;
+}
 body,html {
-  
-  background: linear-gradient(black, cyan);
+  background: linear-gradient(black, black);
   margin: 0;
-  /* height: 100%; */
-  /* background-position: center; */
   background-repeat: no-repeat;
-  /* background-size: cover; */
 }
 
-/* .container {
-  background: linear-gradient(black, cyan);
-  width: 100%;
-} */
-
-.nav-brand {
+/*navbar */
+.top-navbar{
+  padding: 0px !important;
+}
+.branding{
+  color: darkorange;
   font-weight: bolder;
+  font-family: Georgia;
+  font-size: 30px;
+  text-shadow: 0.5px 0.5px 2px rgba(255,255,255,0.8);
+}
+.connect-btn{
+  padding-top: 10px;
+  display: flex;
 }
 
-.nav-item {
-  padding: 0 10px;
+/*home*/
+.main-home{
+  position: absolute;
+  z-index: 100;
+  top: 50px;
+  padding: 0 !important;
+  margin-top: 25vh;
+  margin-bottom: 200px;
+}
+.sub-head{
+  color: white;
+}
+.content2{
+  margin-top: 20px;
+}
+.brand-highlight{
+  color: darkorange;
   font-weight: bold;
 }
-
-.head {
-  color: #F2AA4CFF;
-  font-weight: 1000;
-  font-style: italic;
-}
-
-.exp-heading {
-  color:  beige;
-}
-
-.sub-head {
+.btn-row{
+  display: flex;
   margin-top: 30px;
-  align-items: center;
-  justify-content: center;
-  color: beige;
+}
+.exp-btn1{
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+  border-radius: 50px !important;
+  width: 200px;
+  background-color: #ff8c0010 !important;
+  border: 1px solid darkorange !important;
+  cursor: pointer !important;
+  color: darkorange !important;
+  font-weight: bold !important;
+}
+.exp-btn1:hover{
+  background-color: darkorange !important;
+  color: white !important;
+}
+.btn2{
+  margin-left: 30px;
+}
+.image{
+  border-radius: 20px !important;
 }
 
-.exp-req-btns {
-  align-items: center;
-  margin-bottom: 40px;
+/* Explore */
+.explore-main{
+  min-height: 100vh;
 }
-
-.exp-btn1 {
+.tabs-main-container{
   margin-top: 20px;
-  width: 300px;
-  /* align-items: center; */
 }
-
-.req-btn1 {
-  margin-top: 20px;
-  width: 300px;
+.custom-card{
+  margin-top: 10px;
+  border: 1px solid #ffffff80;
+  padding: 10px;
+  border-radius: 20px;
+  box-shadow: 1px 1px 5px #ffffff70;
+  background-color: #ff8c0015;
 }
-
-.image {
-  margin-bottom: 40px;
+.header-card{
+  display: flex;
+  align-items: center;
 }
-
-.form {
-  background-color: black;
+.card-image{
+  border-radius: 50%;
+}
+.header-card-content{
+  padding-left: 20px;
+  padding-right: 10px;
+}
+.header-card-content .name{
+  margin: 0;
+  padding: 0;
+  margin-bottom: 5px;
   color: white;
-  margin-top: 100px;
-  margin-bottom: 70px;
+}
+.header-card-content .price{
+  margin: 0;
+  padding: 0;
+  margin-bottom: 5px;
+  color: white;
+}
+.donate-btn{
+  padding-top: 2px !important;
+  padding-bottom: 2px !important;
+  border-radius: 10px !important;
+  width: 120px;
+  background-color: #ff8c0010 !important;
+  border: 1px solid darkorange !important;
+  cursor: pointer !important;
+  color: darkorange !important;
+}
+.donate-btn:hover{
+  background-color: darkorange !important;
+  color: white !important;
+}
+.body-card{
+  margin-top: 10px;
+  color: white;
 }
 
-.form-head {
-  padding-top: 20px;
+/*Request*/
+.form-head, .form-subhead{
+  color: white;
 }
-
-.form-btn {
-  margin-bottom: 20px;
+.main-form{
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.form-label{
+  color: white;
 }
