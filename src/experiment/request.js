@@ -26,15 +26,15 @@ class Request extends Component {
             </FormGroup>
             <FormGroup>
               <Label htmlFor="story" className="form-label">Tell us about yourself</Label>
-              <Input type="textarea" rows={3} columns={50} name="story" id="story"
+              <Input type="textarea" rows={10} columns={50} name="story" id="story"
                     innerRef={(input) => this.story = input} placeholder="Describe in short why you need this" maxLength={200}
               />
             </FormGroup>
             <FormGroup>
-              <Label htmlFor="exampleFile" className="form-label">Image Url</Label>
-              <Input type="text" name="photo" id="image" />
+              <Label htmlFor="exampleFile" className="form-label">Passport sized photo</Label>
+              <Input type="file" name="photo" id="photo" />
               <FormText color="muted">
-                Upload your image posted on any social media
+                Upload your recent passport sized photo(jpg/png)
               </FormText>
             </FormGroup>
             <Button className="form-btn" type="submit" value="submit" color="primary">Submit</Button>

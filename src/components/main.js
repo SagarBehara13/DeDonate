@@ -3,9 +3,7 @@ import Home from './home';
 import Request from './request';
 import NavBar from './navbar';
 // import { connect } from 'react-redux';
-
 import Explore from './explore';
-
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 
 class Main extends Component {
