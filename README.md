@@ -24,3 +24,6 @@ De Donate, a decentralized platform for donation via the Ethereum blockchain. It
 * If the users(Donars) find the request valid they can pay for the required help and in return they will be getting token based on the amount of donation through DeDonate.
 * Once the funding is raised, the fundraising will be halted and further distribution of tokens by DeDonate will be stoped.
 <br><br>
+
+<h2 align="center">Home page</h2>
+<img src="https://github.com/SagarBehara13/DeDonate/blob/master/ezgif.com-gif-maker.gif">
