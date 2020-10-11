@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import Web3 from 'web3';
-import { Link } from 'react-router-dom';
 import { Button, Form, FormGroup, Label, Input, FormText, FormFeedback } from 'reactstrap';
 
 import Donation from '../abis/Donation.json'
 import CharityContract from '../abis/CharityToken.json'
 
-class Request extends Component {
+class CharityRequest extends Component {
 
   async componentWillMount(){
     await this.loadWeb3()
@@ -67,6 +66,37 @@ class Request extends Component {
 
       this.setState({ loading: false })
       console.log('peer requests', this.state.requests);
+      console.log('charityRequests', this.state.charityRequests);
+    } else {
+      window.alert("Donation contract is not deployed to detected network")
+    }
+  }
+
+  async LoadCharityData(){
+    const web3 = window.web3
+    const accounts = await web3.eth.getAccounts()
+    this.setState({ account: accounts[0] })
+
+    const networkId = await web3.eth.net.getId()
+    const networkData = Donation.networks[networkId]
+    const charityNetworkData = CharityContract.networks[networkId]
+
+    if(networkData){
+      const charity = web3.eth.Contract(CharityContract.abi, charityNetworkData.address)
+      this.setState({ charity })
+
+      const charityRequestCount = await charity.methods.charityRequestCount().call()
+      console.log("charityRequestCount", charityRequestCount.toString());
+      this.setState({ charityRequestCount })
+
+      for(var i = 1; i <= charityRequestCount; i++){
+        const onGoingCharities = await charity.methods.onGoingCharity(i).call()
+        console.log(onGoingCharities);
+        this.setState({
+          charityRequests: [...this.state.charityRequests, onGoingCharities]
+        })
+      }
+
       console.log('charityRequests', this.state.charityRequests);
     } else {
       window.alert("Donation contract is not deployed to detected network")
@@ -207,4 +237,4 @@ class Request extends Component {
   }
 }
 
-export default Request;
+export default CharityRequest;
