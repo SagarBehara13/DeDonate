@@ -18,7 +18,7 @@ contract Donation {
   }
 
   constructor () public {
-    name = "Market Place";
+    name = "DeDonate";
   }
 
   event productCreated(
