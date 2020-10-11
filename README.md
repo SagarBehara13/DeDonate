@@ -14,7 +14,7 @@ De Donate, a decentralized platform for donation via the Ethereum blockchain. It
 
 
 <h2 align="center">Organization Connection</h2>
-<img src="https://github.com/SagarBehara13/DeDonate/blob/architecture/images/peer-to-peer.png">
+<img src="https://github.com/SagarBehara13/DeDonate/blob/architecture/images/organization.png">
 
 * Charity Organisers with fund raising goals makes a request to DeDonate.
 * This request is passed to Smart Contract.
