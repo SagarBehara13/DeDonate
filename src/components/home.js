@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import image from '../images/organization.png';
+import image from '../images/organizationjpeg.jpg';
 import MetaMaskLoginButton from 'react-metamask-login-button';
 import '../stylesheet/style.css'
 import Particles from 'react-particles-js';
