@@ -38,3 +38,22 @@ De Donate, a decentralized platform for donation via the Ethereum blockchain. It
 Explainatory Video of Usage
 https://youtu.be/qnxtBBP0uBc
 ```
+
+<br>
+<h2 align="center">Explanatory Video</h2>
+
+## 1.Adding a donation request
+<img src="https://github.com/SagarBehara13/DeDonate/blob/architecture/Video_Seg/seg1.gif">
+<br>
+
+## 2.Donation list and peer-to-peer charity
+<img src="https://github.com/SagarBehara13/DeDonate/blob/architecture/Video_Seg/seg2.gif">
+<br>
+
+## 3.Creating a fundraiser for an Organisation
+<img src="https://github.com/SagarBehara13/DeDonate/blob/architecture/Video_Seg/seg3.gif">
+<br>
+
+## 4.Donation process for a fundraising organization
+<img src="https://github.com/SagarBehara13/DeDonate/blob/architecture/Video_Seg/seg4.gif">
+<br>
