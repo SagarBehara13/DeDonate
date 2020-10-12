@@ -18,7 +18,7 @@ contract Donation {
   }
 
   constructor () public {
-    name = "DeDonate";
+    name = "Market Place";
   }
 
   event productCreated(
@@ -26,6 +26,7 @@ contract Donation {
     string name,
     uint price,
     address payable owner,
+    address payable donator,
     bool donated,
     string category,
     string story,
@@ -37,6 +38,7 @@ contract Donation {
     string name,
     uint price,
     address payable owner,
+    address payable donator,
     bool donated
   );
 
@@ -46,7 +48,7 @@ contract Donation {
 
     requestCount ++;
     requests[requestCount] = Request(requestCount, _name, _price, msg.sender, msg.sender, false, _category, _story, _image);
-    emit productCreated(requestCount, _name, _price, msg.sender, false, _category, _story, _image);
+    emit productCreated(requestCount, _name, _price, msg.sender, msg.sender, false, _category, _story, _image);
   }
 
   function fullFillRequest(uint _id) public payable {
@@ -63,6 +65,6 @@ contract Donation {
     requests[_id] = _request;
     _seller.transfer(msg.value);
 
-    emit fullfillRequest(requestCount, _request.name, _request.price, msg.sender, true);
+    emit fullfillRequest(requestCount, _request.name, _request.price, _seller, msg.sender, true);
   }
 }
