@@ -27,3 +27,14 @@ De Donate, a decentralized platform for donation via the Ethereum blockchain. It
 
 <h2 align="center">Home page</h2>
 <img src="https://github.com/SagarBehara13/DeDonate/blob/master/ezgif.com-gif-maker.gif">
+
+```
+## Steps to install and run
+
+1. Clone the repo
+2. yarn/ npm install
+3. yarn start/npm start
+
+Explainatory Video of Usage
+https://drive.google.com/file/d/19L3WILruf73zvrKzvLOTlJ_yrHhd5_Ex/view?usp=sharing
+```
