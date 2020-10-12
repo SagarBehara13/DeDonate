@@ -36,5 +36,5 @@ De Donate, a decentralized platform for donation via the Ethereum blockchain. It
 3. yarn start/npm start
 
 Explainatory Video of Usage
-https://drive.google.com/file/d/19L3WILruf73zvrKzvLOTlJ_yrHhd5_Ex/view?usp=sharing
+https://youtu.be/qnxtBBP0uBc
 ```
