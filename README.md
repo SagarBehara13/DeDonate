@@ -31,7 +31,7 @@ De Donate, a decentralized platform for donation via the Ethereum blockchain. It
 ```
 ## Steps to install and run
 
-1. Clone the repo
+1. Clone the repo (clone from architecture branch)
 2. yarn/ npm install
 3. yarn start/npm start
 
