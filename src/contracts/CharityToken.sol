@@ -39,9 +39,9 @@ contract CharityToken {
   mapping(address => uint256) public balanceOf;
   mapping(address => mapping(address => uint256)) public allowance;
 
-  function createToken(string memory _name, string memory _symbol, uint256 _initialSupply, string memory image, string memory cause) public {
-    name = _name;
-    symbol = _symbol;
+  function createToken(uint256 _initialSupply, string memory image, string memory cause) public {
+    name = 'DeDonate';
+    symbol = 'DDN';
     balanceOf[msg.sender] = _initialSupply;
     totalSupply += _initialSupply;
     raiseGoal = _initialSupply;
@@ -49,7 +49,7 @@ contract CharityToken {
     tokenPrice = 2700000000000000;
     charityRequestCount ++;
 
-    onGoingCharity[charityRequestCount] = CharityRequest(charityRequestCount, _name, _symbol, _initialSupply, 0, msg.sender, true, cause, image);
+    onGoingCharity[charityRequestCount] = CharityRequest(charityRequestCount, name, symbol, _initialSupply, 0, msg.sender, true, cause, image);
   }
 
 
