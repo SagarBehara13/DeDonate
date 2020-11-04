@@ -5,11 +5,19 @@ import image from '../images/organizationjpeg.jpg';
 import MetaMaskLoginButton from 'react-metamask-login-button';
 import '../stylesheet/style.css'
 import Particles from 'react-particles-js';
+import {WebcamCapture} from "./WebcamCapture";
 
 class Home extends Component {
   render() {
     return (
         <div>
+          {/*<WebcamCapture*/}
+          {/*    sendImage={r=> {*/}
+          {/*      console.log(r);*/}
+          {/*      //setcapture => false*/}
+          {/*    }}*/}
+          {/*    capture={true}*/}
+          {/*/>*/}
           <Particles
               params={{
                 particles: {

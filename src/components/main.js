@@ -13,8 +13,8 @@ import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 class Main extends Component {
 
   async componentWillMount(){
-    await this.loadWeb3()
-    await this.loadBlockchainData()
+    // await this.loadWeb3()
+    // await this.loadBlockchainData()
   }
 
   async loadWeb3() {
