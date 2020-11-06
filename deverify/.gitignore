@@ -1,0 +1,8 @@
+# Environment
+venv/
+
+# Python cache and misc
+*.pyc
+__pycache__/
+*.ipynb
+.ipybn_checkpoints
