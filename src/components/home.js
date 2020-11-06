@@ -114,36 +114,99 @@ class Home extends Component {
                 },
                 retina_detect: true,
               }} />
-     <div className="container">
-      {/*<h1 className="head">DeDonate</h1>*/}
+           <div className="container">
+            {/*<h1 className="head">DeDonate</h1>*/}
 
-      <div className="main-home container">
-        <div className="row sub-head">
-          <div className="col main-content">
-            <h4 className="content1"><span className="brand-highlight">DeDonate</span> is a decentralized platform for donation via the <strong>Ethereum</strong> blockchain. It allows people to donate to peers directly thus removing the frauds and faulty corrupted middleman and keeping the donation related activity anonymous!!</h4>
-            <h3 className="content2">It allows charitable organizations to raise funds for their charitable activity through Ethereum blockchain.</h3>
-          </div>
-        </div>
-        {/*<div className="row metamask-btn">*/}
-        {/*  <MetaMaskLoginButton />*/}
-        {/*</div>*/}
-        <div className="btn-row">
-          <div className="">
-            <Link to={`/explore`}>
-              <Button color="danger" className="exp-btn1">Explore</Button>
-            </Link>
-          </div>
-          <div className="btn2">
-            <Link to={`/request`}>
-              <Button color="danger" className="exp-btn1">Request</Button>
-            </Link>
-          </div>
-        </div>
-      </div>
-     </div>
-    <div className="image">
-      <img width="100%" src={image}></img>
-    </div>
+            <div className="main-home container">
+              <div className="row sub-head">
+                <div className="col main-content">
+                  <h4 className="content1"><span className="brand-highlight">DeDonate</span> is a decentralized platform for donation via the <strong>Ethereum</strong> blockchain. It allows people to donate to peers directly thus removing the frauds and faulty corrupted middleman and keeping the donation related activity anonymous!!</h4>
+                  <h3 className="content2">It allows charitable organizations to raise funds for their charitable activity through Ethereum blockchain.</h3>
+                </div>
+              </div>
+              {/*<div className="row metamask-btn">*/}
+              {/*  <MetaMaskLoginButton />*/}
+              {/*</div>*/}
+              <div className="btn-row">
+                <div className="">
+                  <Link to={`/explore`}>
+                    <Button color="danger" className="exp-btn1">Explore</Button>
+                  </Link>
+                </div>
+                <div className="btn2">
+                  <Link to={`/request`}>
+                    <Button color="danger" className="exp-btn1">Request</Button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+           </div>
+            <div className="container">
+              <div className='zig-zag-row'>
+                <div className='zig-zag-row-image'>
+                  <img width="100%" src={image} className='internal-image'></img>
+                </div>
+                <div className='zig-zag-row-content'>
+                  <p className='internal-content'>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                    when an unknown printer took a galley of type and scrambled it to make a
+                    type specimen book. It has survived not only five centuries, but also the
+                    leap into electronic typesetting, remaining essentially unchanged.
+                    It was popularised in the 1960s with the release of Letraset sheets containing
+                    Lorem Ipsum passages, and more recently with desktop publishing software
+                    like Aldus PageMaker including versions of Lorem Ipsum</p>
+                </div>
+              </div>
+              <div className='zig-zag-row'>
+                <div className='zig-zag-row-content'>
+                  <p className='internal-content'>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                    when an unknown printer took a galley of type and scrambled it to make a
+                    type specimen book. It has survived not only five centuries, but also the
+                    leap into electronic typesetting, remaining essentially unchanged.
+                    It was popularised in the 1960s with the release of Letraset sheets containing
+                    Lorem Ipsum passages, and more recently with desktop publishing software
+                    like Aldus PageMaker including versions of Lorem Ipsum</p>
+                </div>
+                <div className='zig-zag-row-image'>
+                  <img width="100%" src={image} className='internal-image'></img>
+                </div>
+              </div>
+              <div className='zig-zag-row'>
+                <div className='zig-zag-row-image'>
+                  <img width="100%" src={image} className='internal-image'></img>
+                </div>
+                <div className='zig-zag-row-content'>
+                  <p className='internal-content'>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                    when an unknown printer took a galley of type and scrambled it to make a
+                    type specimen book. It has survived not only five centuries, but also the
+                    leap into electronic typesetting, remaining essentially unchanged.
+                    It was popularised in the 1960s with the release of Letraset sheets containing
+                    Lorem Ipsum passages, and more recently with desktop publishing software
+                    like Aldus PageMaker including versions of Lorem Ipsum</p>
+                </div>
+              </div>
+              <div className='zig-zag-row'>
+                <div className='zig-zag-row-content'>
+                  <p className='internal-content'>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                    when an unknown printer took a galley of type and scrambled it to make a
+                    type specimen book. It has survived not only five centuries, but also the
+                    leap into electronic typesetting, remaining essentially unchanged.
+                    It was popularised in the 1960s with the release of Letraset sheets containing
+                    Lorem Ipsum passages, and more recently with desktop publishing software
+                    like Aldus PageMaker including versions of Lorem Ipsum</p>
+                </div>
+                <div className='zig-zag-row-image'>
+                  <img width="100%" src={image} className='internal-image'></img>
+                </div>
+              </div>
+
+            </div>
+            {/*<div className="image">*/}
+            {/*  <img width="100%" src={image}></img>*/}
+            {/*</div>*/}
         </div>
     );
   }
