@@ -165,3 +165,11 @@ body,html {
   height: 700px;
 }
 
+.nav-link{
+  color: #ffffff !important;
+}
+
+.active{
+  color: #000000 !important;
+}
+
