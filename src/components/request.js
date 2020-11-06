@@ -202,24 +202,29 @@ class CharityRequest extends Component {
           <TabPane tabId="1">
             <Form onSubmit={(event) => {
               event.preventDefault()
-              const name = this.requestName.value
-              const price = window.web3.utils.toWei(this.requestPrice.value.toString(), 'Ether') || 0
+              const name = this.requestDName.value
+              // const price = window.web3.utils.toWei(this.requestPrice.value.toString(), 'Ether') || 0
+              const price = this.requestPrice.value.toString();
               const category = this.requestCategory.value
               const story = this.requestStory.value
-              const image = this.requestImage.value
-              console.log(name, price, category, story, image);
-              this.createRequest(name, price, category, story, image)
+              const image = this.requestPTPImage.value
+              console.log('name',name,'price', price,'category', category,'story', story,'image', image);
+              // this.createRequest(name, price, category, story, image)
             }} className="main-form">
               <FormGroup>
                 <Label htmlFor="name" className="form-label">Full Name</Label>
-                <Input type="text" id="requestName"
-                  innerRef={(input) => this.requestName = input} placeholder="Enter your name here"
+                <Input type="text" id="requestDName" name="requestDName"
+                  innerRef={(input) => {
+                    this.requestDName = input;
+                  }} placeholder="Enter your name here"
                 />
               </FormGroup>
               <FormGroup>
                 <Label htmlFor="criteria" className="form-label">Criteria</Label>
                 <Input type="select" name="criteria" id="requestCategory"
-                       innerRef={(input) => this.requestCategory = input}>
+                       innerRef={(input) => {
+                         this.requestCategory = input;
+                       }}>
                   <option>Education</option>
                   <option>Sports</option>
                   <option>Others</option>
@@ -233,13 +238,13 @@ class CharityRequest extends Component {
               </FormGroup>
               <FormGroup>
                 <Label htmlFor="story" className="form-label">Donation Amount</Label>
-                <Input type="text" rows={3} columns={50} name="story" id="requestPrice"
+                <Input type="number" rows={3} columns={50} name="story" id="requestPrice"
                        innerRef={(input) => this.requestPrice = input} placeholder="amount"
                 />
               </FormGroup>
               <FormGroup>
                 <Label htmlFor="exampleFile" className="form-label">Image Url</Label>
-                <Input type="text" name="photo" id="requestImage" innerRef={(input) => this.requestImage = input} placeholder="image"/>
+                <Input type="text" name="photo" id="requestPTPImage" innerRef={(input) => this.requestPTPImage = input} placeholder="image"/>
                 <FormText color="muted">
                   Upload your image posted on any social media
                 </FormText>
@@ -250,18 +255,18 @@ class CharityRequest extends Component {
           <TabPane tabId="2">
             <Form onSubmit={(event) => {
               event.preventDefault()
-              const name = this.requestName.value
+              const name = this.requestCName.value
               const symbol = this.requestSymbol.value
               const raiseGoal = this.raiseGoal.value
               const cause = this.requestCause.value
               const image = this.requestImage.value
-              console.log(name, symbol, raiseGoal, image, cause);
-              this.raiseFund(name, symbol, raiseGoal, image, cause)
+              console.log(name, symbol, raiseGoal, cause, image);
+              // this.raiseFund(name, symbol, raiseGoal, image, cause)
             }} className="main-form">
               <FormGroup>
                 <Label htmlFor="name" className="form-label">Charity Name</Label>
-                <Input type="text" id="requestName" name="name"
-                    innerRef={(input) => this.requestName = input} placeholder="Enter charity name here"
+                <Input type="text" id="requestCName" name="name"
+                    innerRef={(input) => this.requestCName = input} placeholder="Enter charity name here"
                 />
               </FormGroup>
               <FormGroup>
@@ -297,8 +302,9 @@ class CharityRequest extends Component {
             <Form onSubmit={(event) => {
               event.preventDefault()
               const address = this.deployerAddress.value
-              const value = this.requestValue.value
-              this.approve(address, value)
+              const value = this.requestAValue.value
+              console.log(address, value);
+              // this.approve(address, value)
             }} className="main-form">
               <FormGroup>
                 <Label htmlFor="name" className="form-label">Spender</Label>
@@ -308,8 +314,8 @@ class CharityRequest extends Component {
               </FormGroup>
               <FormGroup>
                 <Label htmlFor="name" className="form-label">Amount</Label>
-                <Input type="text" id="requestValue" name="name"
-                    innerRef={(input) => this.requestValue = input} placeholder="Total Tokens Amount"
+                <Input type="number" id="requestValue" name="name"
+                    innerRef={(input) => this.requestAValue = input} placeholder="Total Tokens Amount"
                 />
               </FormGroup>
               <br></br>
@@ -321,7 +327,8 @@ class CharityRequest extends Component {
               event.preventDefault()
               const id = this.id.value
               const value = this.requestValue.value
-              this.donateToCharity(id, value)
+              console.log(id, value)
+              // this.donateToCharity(id, value)
             }} className="main-form">
               <FormGroup>
                 <Label htmlFor="name" className="form-label">Charity Id</Label>
@@ -331,7 +338,7 @@ class CharityRequest extends Component {
               </FormGroup>
               <FormGroup>
                 <Label htmlFor="name" className="form-label">Amount</Label>
-                <Input type="text" id="requestValue" name="name"
+                <Input type="number" id="requestValue" name="name"
                     innerRef={(input) => this.requestValue = input} placeholder="Donation Amount"
                 />
               </FormGroup>

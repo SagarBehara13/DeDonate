@@ -67,6 +67,29 @@ body,html {
 .image{
   border-radius: 20px !important;
 }
+.zig-zag-row{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+.zig-zag-row-image{
+  max-width: 48%;
+}
+.zig-zag-row-content{
+  max-width: 48%;
+}
+.internal-image{
+  height: 420px;
+  width: 500px;
+  border-radius: 20px;
+}
+.internal-content{
+  color: #fff;
+  font-size: 17px;
+  margin-top: 25px;
+}
+
 
 /* Explore */
 .explore-main{
@@ -141,3 +164,12 @@ body,html {
   background-color: black;
   height: 700px;
 }
+
+.nav-link{
+  color: #ffffff !important;
+}
+
+.active{
+  color: #000000 !important;
+}
+
