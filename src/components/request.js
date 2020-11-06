@@ -201,25 +201,33 @@ class CharityRequest extends Component {
          <TabContent activeTab={this.state.activeTab}>
           <TabPane tabId="1">
             <Form onSubmit={(event) => {
+              console.log(this);
               event.preventDefault()
-              const name = this.requestName.value
-              const price = window.web3.utils.toWei(this.requestPrice.value.toString(), 'Ether') || 0
+              const name = this.requestDName.value
+              // const price = window.web3.utils.toWei(this.requestPrice.value.toString(), 'Ether') || 0
+              const price = this.requestPrice.value.toString();
               const category = this.requestCategory.value
               const story = this.requestStory.value
-              const image = this.requestImage.value
-              console.log(name, price, category, story, image);
-              this.createRequest(name, price, category, story, image)
+              const image = this.requestPTPImage.value
+              console.log('name',name,'price', price,'category', category,'story', story,'image', image);
+              // this.createRequest(name, price, category, story, image)
             }} className="main-form">
               <FormGroup>
                 <Label htmlFor="name" className="form-label">Full Name</Label>
-                <Input type="text" id="requestName"
-                  innerRef={(input) => this.requestName = input} placeholder="Enter your name here"
+                <Input type="text" id="requestDName" name="requestDName"
+                  innerRef={(input) => {
+                    console.log(input);
+                    this.requestDName = input;
+                  }} placeholder="Enter your name here"
                 />
               </FormGroup>
               <FormGroup>
                 <Label htmlFor="criteria" className="form-label">Criteria</Label>
                 <Input type="select" name="criteria" id="requestCategory"
-                       innerRef={(input) => this.requestCategory = input}>
+                       innerRef={(input) => {
+                         console.log(input);
+                         this.requestCategory = input;
+                       }}>
                   <option>Education</option>
                   <option>Sports</option>
                   <option>Others</option>
@@ -233,13 +241,13 @@ class CharityRequest extends Component {
               </FormGroup>
               <FormGroup>
                 <Label htmlFor="story" className="form-label">Donation Amount</Label>
-                <Input type="text" rows={3} columns={50} name="story" id="requestPrice"
+                <Input type="number" rows={3} columns={50} name="story" id="requestPrice"
                        innerRef={(input) => this.requestPrice = input} placeholder="amount"
                 />
               </FormGroup>
               <FormGroup>
                 <Label htmlFor="exampleFile" className="form-label">Image Url</Label>
-                <Input type="text" name="photo" id="requestImage" innerRef={(input) => this.requestImage = input} placeholder="image"/>
+                <Input type="text" name="photo" id="requestPTPImage" innerRef={(input) => this.requestPTPImage = input} placeholder="image"/>
                 <FormText color="muted">
                   Upload your image posted on any social media
                 </FormText>
