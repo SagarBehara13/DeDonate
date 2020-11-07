@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardImg, CardSubtitle, CardText, Row, Col, CardBody } from 'reactstrap';
 import classnames from 'classnames';
-import logo from '../images/logo.jpeg';
-import logo1 from '../images/logo1.jpeg';
-import Me from '../images/Me.jpg';
-import Me1 from '../images/Me1.jpg';
+// import logo from '../images/logo.jpeg';
+
 
 const Approve = (props) => {
   const [activeTab, setActiveTab] = useState('1');
@@ -42,7 +40,7 @@ const Approve = (props) => {
               <Col sm="12" md="6">
                 <div className="custom-card">
                   <div className="header-card">
-                    <img width="130px" height="130px" src={logo} alt="Card cap" className="card-image"/>
+                    <img width="130px" height="130px"  alt="Card cap" className="card-image"/>
                     <div className="header-card-content">
                       <p className="name">Special Title Treatment Approve</p>
                       <p className="price">Card subtitle</p>

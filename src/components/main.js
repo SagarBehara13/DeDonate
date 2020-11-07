@@ -13,8 +13,8 @@ import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 class Main extends Component {
 
   async componentWillMount(){
-    // await this.loadWeb3()
-    // await this.loadBlockchainData()
+    await this.loadWeb3()
+    await this.loadBlockchainData()
   }
 
   async loadWeb3() {
@@ -116,7 +116,7 @@ class Main extends Component {
 
   raiseFund(name, symbol, raiseGoal, image, cause) {
     this.setState({ loading: true })
-    this.state.charity.methods.createToken(name, symbol, raiseGoal, image, cause).send({ from: this.state.account })
+    this.state.charity.methods.createToken(raiseGoal, image, cause).send({ from: this.state.account })
     .once('receipt', (receipt) => {
       this.setState({ loading: false })
     })

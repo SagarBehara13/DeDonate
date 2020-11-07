@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardImg, CardSubtitle, CardText, Row, Col, CardBody, Form, FormGroup, Label, Input, FormText, FormFeedback } from 'reactstrap';
 import classnames from 'classnames';
-import logo from '../images/logo.jpeg';
-import logo1 from '../images/logo1.jpeg';
-import Me from '../images/Me.jpg';
-import Me1 from '../images/Me1.jpg';
+// import logo from '../images/logo.jpeg';
+
 
 const Explore = (props) => {
   const [activeTab, setActiveTab] = useState('1');

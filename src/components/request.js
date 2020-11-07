@@ -117,9 +117,9 @@ class CharityRequest extends Component {
     })
   }
 
-  raiseFund(name, symbol, raiseGoal, image, cause) {
+  raiseFund(raiseGoal, image, cause) {
     this.setState({ loading: true })
-    this.state.charity.methods.createToken(name, symbol, raiseGoal, image, cause).send({ from: this.state.account })
+    this.state.charity.methods.createToken(raiseGoal, image, cause).send({ from: this.state.account })
     .once('receipt', (receipt) => {
       this.setState({ loading: false })
     })
@@ -203,13 +203,13 @@ class CharityRequest extends Component {
             <Form onSubmit={(event) => {
               event.preventDefault()
               const name = this.requestDName.value
-              // const price = window.web3.utils.toWei(this.requestPrice.value.toString(), 'Ether') || 0
-              const price = this.requestPrice.value.toString();
+              const price = window.web3.utils.toWei(this.requestPrice.value.toString(), 'Ether') || 0
+              //const price = this.requestPrice.value.toString();
               const category = this.requestCategory.value
               const story = this.requestStory.value
               const image = this.requestPTPImage.value
               console.log('name',name,'price', price,'category', category,'story', story,'image', image);
-              // this.createRequest(name, price, category, story, image)
+              this.createRequest(name, price, category, story, image)
             }} className="main-form">
               <FormGroup>
                 <Label htmlFor="name" className="form-label">Full Name</Label>
@@ -238,7 +238,7 @@ class CharityRequest extends Component {
               </FormGroup>
               <FormGroup>
                 <Label htmlFor="story" className="form-label">Donation Amount</Label>
-                <Input type="number" rows={3} columns={50} name="story" id="requestPrice"
+                <Input type="text" rows={3} columns={50} name="story" id="requestPrice"
                        innerRef={(input) => this.requestPrice = input} placeholder="amount"
                 />
               </FormGroup>
@@ -256,12 +256,12 @@ class CharityRequest extends Component {
             <Form onSubmit={(event) => {
               event.preventDefault()
               const name = this.requestCName.value
-              const symbol = this.requestSymbol.value
+              const symbol = "DDN"//this.requestSymbol.value
               const raiseGoal = this.raiseGoal.value
               const cause = this.requestCause.value
               const image = this.requestImage.value
               console.log(name, symbol, raiseGoal, cause, image);
-              // this.raiseFund(name, symbol, raiseGoal, image, cause)
+              this.raiseFund(raiseGoal, image, cause)
             }} className="main-form">
               <FormGroup>
                 <Label htmlFor="name" className="form-label">Charity Name</Label>
@@ -269,16 +269,16 @@ class CharityRequest extends Component {
                     innerRef={(input) => this.requestCName = input} placeholder="Enter charity name here"
                 />
               </FormGroup>
-              <FormGroup>
+              {/* <FormGroup>
                 <Label htmlFor="name" className="form-label">Symbol</Label>
                 <Input type="text" id="requestSymbol" name="name"
                     innerRef={(input) => this.requestSymbol = input} placeholder="Enter desired token symbol"
                 />
-              </FormGroup>
+              </FormGroup> */}
               <FormGroup>
                 <Label htmlFor="name" className="form-label">Raise Goal</Label>
                 <Input type="text" id="raiseGoal" name="name"
-                    innerRef={(input) => this.raiseGoal = input} placeholder="Enter desired token symbol"
+                    innerRef={(input) => this.raiseGoal = input} placeholder="Enter the amount to be raised by the charity"
                 />
               </FormGroup>
               <FormGroup>
@@ -304,7 +304,7 @@ class CharityRequest extends Component {
               const address = this.deployerAddress.value
               const value = this.requestAValue.value
               console.log(address, value);
-              // this.approve(address, value)
+              this.approve(address, value)
             }} className="main-form">
               <FormGroup>
                 <Label htmlFor="name" className="form-label">Spender</Label>
@@ -328,7 +328,7 @@ class CharityRequest extends Component {
               const id = this.id.value
               const value = this.requestValue.value
               console.log(id, value)
-              // this.donateToCharity(id, value)
+              this.donateToCharity(id, value)
             }} className="main-form">
               <FormGroup>
                 <Label htmlFor="name" className="form-label">Charity Id</Label>
