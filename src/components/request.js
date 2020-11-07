@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import Web3 from 'web3';
+import Rsk3 from '@rsksmart/rsk3';
 import classnames from 'classnames';
 import { TabContent, Button, Form, FormGroup, Label, Input, FormText, FormFeedback, Nav, NavItem, NavLink, TabPane } from 'reactstrap';
 import Donation from '../abis/Donation.json'
 import CharityContract from '../abis/CharityToken.json'
+
+const rsk3 = new Rsk3('https://public-node.testnet.rsk.co')
 
 class CharityRequest extends Component {
 
@@ -200,14 +203,15 @@ class CharityRequest extends Component {
          </Nav>
          <TabContent activeTab={this.state.activeTab}>
           <TabPane tabId="1">
-            <Form onSubmit={(event) => {
+            <Form onSubmit={ async (event) => {
               event.preventDefault()
               const name = this.requestDName.value
-              const price = window.web3.utils.toWei(this.requestPrice.value.toString(), 'Ether') || 0
-              //const price = this.requestPrice.value.toString();
+              //const price = window.web3.utils.toWei(this.requestPrice.value.toString(), 'Ether') || 0
+              const price = rsk3.utils.toWei(this.requestPrice.value.toString(), 'ether')//this.requestPrice.value.toString();
               const category = this.requestCategory.value
               const story = this.requestStory.value
               const image = this.requestPTPImage.value
+              //const gas = await rsk3.getBalance('0xcCE31Caabbc11e5EC5C26897743015291b5C4FFC');
               console.log('name',name,'price', price,'category', category,'story', story,'image', image);
               this.createRequest(name, price, category, story, image)
             }} className="main-form">
@@ -278,7 +282,7 @@ class CharityRequest extends Component {
               <FormGroup>
                 <Label htmlFor="name" className="form-label">Raise Goal</Label>
                 <Input type="text" id="raiseGoal" name="name"
-                    innerRef={(input) => this.raiseGoal = input} placeholder="Enter the amount to be raised by the charity"
+                    innerRef={(input) => this.raiseGoal = input} placeholder="Enter the amount in RBTC to be raised by the charity"
                 />
               </FormGroup>
               <FormGroup>
