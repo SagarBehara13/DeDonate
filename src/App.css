@@ -1,30 +1,31 @@
-*{
+* {
   font-family: Georgia;
 }
-body,html {
+body,
+html {
   background: linear-gradient(black, black);
   margin: 0;
   background-repeat: no-repeat;
 }
 
 /*navbar */
-.top-navbar{
+.top-navbar {
   padding: 0px !important;
 }
-.branding{
+.branding {
   color: darkorange;
   font-weight: bolder;
   font-family: Georgia;
   font-size: 30px;
-  text-shadow: 0.5px 0.5px 2px rgba(255,255,255,0.8);
+  text-shadow: 0.5px 0.5px 2px rgba(255, 255, 255, 0.8);
 }
-.connect-btn{
+.connect-btn {
   padding-top: 10px;
   display: flex;
 }
 
 /*home*/
-.main-home{
+.main-home {
   position: absolute;
   z-index: 100;
   top: 50px;
@@ -32,21 +33,21 @@ body,html {
   margin-top: 25vh;
   margin-bottom: 200px;
 }
-.sub-head{
+.sub-head {
   color: white;
 }
-.content2{
+.content2 {
   margin-top: 20px;
 }
-.brand-highlight{
+.brand-highlight {
   color: darkorange;
   font-weight: bold;
 }
-.btn-row{
+.btn-row {
   display: flex;
   margin-top: 30px;
 }
-.exp-btn1{
+.exp-btn1 {
   padding-top: 10px !important;
   padding-bottom: 10px !important;
   border-radius: 50px !important;
@@ -57,48 +58,47 @@ body,html {
   color: darkorange !important;
   font-weight: bold !important;
 }
-.exp-btn1:hover{
+.exp-btn1:hover {
   background-color: darkorange !important;
   color: white !important;
 }
-.btn2{
+.btn2 {
   margin-left: 30px;
 }
-.image{
+.image {
   border-radius: 20px !important;
 }
-.zig-zag-row{
+.zig-zag-row {
   display: flex;
   justify-content: space-between;
   margin-top: 60px;
   margin-bottom: 60px;
 }
-.zig-zag-row-image{
+.zig-zag-row-image {
   max-width: 48%;
 }
-.zig-zag-row-content{
+.zig-zag-row-content {
   max-width: 48%;
 }
-.internal-image{
+.internal-image {
   height: 420px;
   width: 500px;
   border-radius: 20px;
 }
-.internal-content{
+.internal-content {
   color: #fff;
   font-size: 17px;
   margin-top: 50px;
 }
 
-
 /* Explore */
-.explore-main{
+.explore-main {
   min-height: 100vh;
 }
-.tabs-main-container{
+.tabs-main-container {
   margin-top: 20px;
 }
-.custom-card{
+.custom-card {
   margin-top: 10px;
   border: 1px solid #ffffff80;
   padding: 10px;
@@ -106,70 +106,70 @@ body,html {
   box-shadow: 1px 1px 5px #ffffff70;
   background-color: #ff8c0015;
 }
-.header-card{
+.header-card {
   display: flex;
   align-items: center;
 }
-.card-image{
+.card-image {
   border-radius: 50%;
 }
-.header-card-content{
+.header-card-content {
   padding-left: 20px;
   padding-right: 10px;
 }
-.header-card-content .name{
+.header-card-content .name {
   margin: 0;
   padding: 0;
   margin-bottom: 5px;
   color: white;
 }
-.header-card-content .price{
+.header-card-content .price {
   margin: 0;
   padding: 0;
   margin-bottom: 5px;
   color: white;
 }
-.donate-btn{
+.donate-btn {
   padding-top: 2px !important;
   padding-bottom: 2px !important;
   border-radius: 10px !important;
-  width: 120px;
+  width: 150px;
   background-color: #ff8c0010 !important;
   border: 1px solid darkorange !important;
   cursor: pointer !important;
   color: darkorange !important;
 }
-.donate-btn:hover{
+.donate-btn:hover {
   background-color: darkorange !important;
   color: white !important;
 }
-.body-card{
+.body-card {
   margin-top: 10px;
   color: white;
 }
 
 /*Request*/
-.form-head, .form-subhead{
+.form-head,
+.form-subhead {
   color: white;
 }
-.main-form{
+.main-form {
   padding-top: 30px;
   padding-bottom: 30px;
 }
-.form-label{
+.form-label {
   color: white;
 }
 
-.back{
+.back {
   background-color: black;
   height: 700px;
 }
 
-.nav-link{
+.nav-link {
   color: #ffffff !important;
 }
 
-.active{
+.active {
   color: #000000 !important;
 }
-

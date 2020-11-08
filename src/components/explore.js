@@ -1,14 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardImg, CardSubtitle, CardText, Row, Col, CardBody, Form, FormGroup, Label, Input, FormText, FormFeedback } from 'reactstrap';
 import classnames from 'classnames';
+import Donation from '../abis/Donation.json'
+import CharityContract from '../abis/CharityToken.json'
 import {Modal} from "react-bootstrap";
-// import logo from '../images/logo.jpeg';
+import Web3 from 'web3';
 
 let amount = {};
+
 const Explore = (props) => {
   const [activeTab, setActiveTab] = useState('1');
   const [show, setShow] = useState(false);
   const [charityId, setCharityId] = useState('');
+  const [accounts, setAccounts] = useState();
+  const [donations, setDonations] = useState();
+  const [charity, setCharity] = useState();
+  const [reqCount, setReqCount] = useState()
+  const [charityCount, setCharityCount] = useState();
+  const [requests, setRequests] = useState([])
+  const [charityRequests, setCharityRequests] = useState([])
 
   const toggle = tab => {
     if(activeTab !== tab) setActiveTab(tab);
@@ -16,27 +26,86 @@ const Explore = (props) => {
 
   const handleClose = () => setShow(false);
 
-  const handleShow = () => {
-    setShow(true);
+  useEffect(() => {
+    anonymousFunc()
+  }, [])
+
+  const anonymousFunc = async () => {
+    await loadWeb3()
+    await loadBlockchainData()
   }
 
-  function handleChange(event){
-    // COMMENT: Not used yet.
+  async function loadBlockchainData() {
+    const web3 = window.web3
+    const accounts = await web3.eth.getAccounts()
+    setAccounts(accounts[0])
+
+    const networkId = await web3.eth.net.getId()
+    const networkData = Donation.networks[networkId]
+    const charityNetworkData = CharityContract.networks[networkId]
+
+    if (networkData) {
+      const donation = web3.eth.Contract(Donation.abi, networkData.address)
+      const charity = web3.eth.Contract(CharityContract.abi, charityNetworkData.address)
+      setDonations(donation)
+      setCharity(charity)
+
+      const requestCount = await donation.methods.requestCount().call()
+      const charityRequestCount = await charity.methods.charityRequestCount().call()
+   
+      setReqCount(requestCount)
+      setCharityCount(charityRequestCount)
+
+      for (var i = 1; i <= requestCount; i++) {
+        const request = await donation.methods.requests(i).call()
+        setRequests([...requests, request])
+      }
+
+      for (var j = 1; j <= charityRequestCount; j++) {
+        const onGoingCharities = await charity.methods.onGoingCharity(j).call()
+        
+        setCharityRequests([...charityRequests, onGoingCharities])
+      }
+    } else {
+      window.alert("Donation contract is not deployed to detected network")
+    }
+  }
+
+  async function loadWeb3() {
+    if (window.ethereum) {
+      window.web3 = new Web3(window.ethereum)
+      await window.ethereum.enable()
+    }
+    else if (window.web3) {
+      window.web3 = new Web3(window.web3.currentProvider)
+    }
+    else {
+      window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!')
+    }
+  }
+
+  
+
+  function donateToCharity(id, value) {
+    charity.methods.donateToCharity(id, value).send({ from: accounts, value: value })
+      .once('receipt', (receipt) => {
+        console.log('Loading, the receipt is ', receipt)
+      })
   }
 
   return (
     <div className="container bg explore-main">
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Donation</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={(event) => {
             event.preventDefault()
             const ids = charityId
             const value = amount.value
-
-            // this.donateToCharity(ids, value)
+            console.log(ids, value)
+            donateToCharity(ids, value)
           }} className="main-form">
             <FormGroup>
               <Label htmlFor="name" className="form-label">Charity Id</Label>
@@ -44,7 +113,7 @@ const Explore = (props) => {
             </FormGroup>
             <FormGroup>
               <Label htmlFor="name" className="form-label">Amount</Label>
-              <Input type="number" id="requestValue" name="name"
+              <Input type="decimal" id="requestValue" name="name"
                      innerRef={(input) => {amount = input}}
                      placeholder="Donation Amount"
               />
@@ -53,12 +122,6 @@ const Explore = (props) => {
           </Form>
         </Modal.Body>
       </Modal>
-      <Button variant="primary" onClick={() => {
-        setCharityId('122knkqwd');
-        setShow(true);
-      }}>
-        Launch demo modal
-      </Button>
       <div className="row">
       <div className="col-12">
       <Nav tabs>
