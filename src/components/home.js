@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import image from '../images/organizationjpeg.jpg';
-import image1 from '../images/peer-to-peerjpeg.jpg'
+import image from '../images/organization.jpg';
+import image1 from '../images/peertopeer.jpg'
 import MetaMaskLoginButton from 'react-metamask-login-button';
 import '../stylesheet/style.css'
 import Particles from 'react-particles-js';
