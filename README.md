@@ -36,7 +36,7 @@ DeDonate, a decentralized platform for donation via the RSK blockchain. It allow
 3. yarn start/npm start
 
 Explainatory Video of Usage
-https://youtu.be/qnxtBBP0uBc
+https://drive.google.com/drive/folders/1Xtl_IVqZb25Yedne1DmGg9I6dvOJ5AQh
 ```
 
 <br>
