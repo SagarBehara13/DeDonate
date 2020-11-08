@@ -4,6 +4,7 @@ import classnames from 'classnames';
 import { TabContent, Button, Form, FormGroup, Label, Input, FormText, FormFeedback, Nav, NavItem, NavLink, TabPane } from 'reactstrap';
 import Donation from '../abis/Donation.json'
 import CharityContract from '../abis/CharityToken.json'
+import {Modal} from "react-bootstrap";
 
 class CharityRequest extends Component {
 
@@ -157,6 +158,7 @@ class CharityRequest extends Component {
     })
   }
 
+
   render() {
     return (
      <div className="container">
@@ -164,6 +166,14 @@ class CharityRequest extends Component {
        <div className="" id="request">
         <h4 className="form-head">Are you talented & Looking for donations?</h4>
         <h5 className="form-subhead">Provide us your details and let us give you the chance to meet your donors!!</h5>
+         <Modal show={show} onHide={handleClose}>
+           <Modal.Header closeButton>
+             <Modal.Title>Modal heading</Modal.Title>
+           </Modal.Header>
+           <Modal.Body>
+             //body
+           </Modal.Body>
+         </Modal>
         <Nav tabs>
            <NavItem>
              <NavLink type="button "
@@ -203,28 +213,26 @@ class CharityRequest extends Component {
             <Form onSubmit={(event) => {
               event.preventDefault()
               const name = this.requestDName.value
-              const price = window.web3.utils.toWei(this.requestPrice.value.toString(), 'Ether') || 0
-              //const price = this.requestPrice.value.toString();
+              // const price = window.web3.utils.toWei(this.requestPrice.value.toString(), 'Ether') || 0
+              const price = this.requestPrice.value.toString();
               const category = this.requestCategory.value
               const story = this.requestStory.value
               const image = this.requestPTPImage.value
               console.log('name',name,'price', price,'category', category,'story', story,'image', image);
-              this.createRequest(name, price, category, story, image)
+              const result = this.validateUser();
+              console.log(result);
+              if (result){
+                this.createRequest(name, price, category, story, image)
+              }
             }} className="main-form">
               <FormGroup>
                 <Label htmlFor="name" className="form-label">Full Name</Label>
-                <Input type="text" id="requestDName" name="requestDName"
-                  innerRef={(input) => {
-                    this.requestDName = input;
-                  }} placeholder="Enter your name here"
+                <Input type="text" id="requestDName" name="requestDName" innerRef={(input) => {this.requestDName = input;}} placeholder="Enter your name here"
                 />
               </FormGroup>
               <FormGroup>
                 <Label htmlFor="criteria" className="form-label">Criteria</Label>
-                <Input type="select" name="criteria" id="requestCategory"
-                       innerRef={(input) => {
-                         this.requestCategory = input;
-                       }}>
+                <Input type="select" name="criteria" id="requestCategory" innerRef={(input) => {this.requestCategory = input;}}>
                   <option>Education</option>
                   <option>Sports</option>
                   <option>Others</option>
@@ -232,22 +240,16 @@ class CharityRequest extends Component {
               </FormGroup>
               <FormGroup>
                 <Label htmlFor="story" className="form-label">Tell us about yourself</Label>
-                <Input type="textarea" rows={3} columns={50} name="story" id="requestStory"
-                       innerRef={(input) => this.requestStory = input} placeholder="Describe in short why you need this" maxLength={200}
-                />
+                <Input type="textarea" rows={3} columns={50} name="story" id="requestStory" innerRef={(input) => this.requestStory = input} placeholder="Describe in short why you need this" maxLength={200}/>
               </FormGroup>
               <FormGroup>
                 <Label htmlFor="story" className="form-label">Donation Amount</Label>
-                <Input type="text" rows={3} columns={50} name="story" id="requestPrice"
-                       innerRef={(input) => this.requestPrice = input} placeholder="amount"
-                />
+                <Input type="number" rows={3} columns={50} name="story" id="requestPrice" innerRef={(input) => this.requestPrice = input} placeholder="amount"/>
               </FormGroup>
               <FormGroup>
                 <Label htmlFor="exampleFile" className="form-label">Image Url</Label>
                 <Input type="text" name="photo" id="requestPTPImage" innerRef={(input) => this.requestPTPImage = input} placeholder="image"/>
-                <FormText color="muted">
-                  Upload your image posted on any social media
-                </FormText>
+                <FormText color="muted">Upload your image posted on any social media</FormText>
               </FormGroup>
               <Button className="form-btn" type="submit" value="submit" color="primary">Submit</Button>
             </Form>
