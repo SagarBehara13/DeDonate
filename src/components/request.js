@@ -11,6 +11,7 @@ import { WebcamCapture } from "./WebcamCapture";
 
 const rsk3 = new Rsk3('https://public-node.testnet.rsk.co')
 
+
 class CharityRequest extends Component {
 
   async componentWillMount() {
@@ -87,7 +88,8 @@ class CharityRequest extends Component {
       activeTab: "1",
       showVerificationModal: false,
       clickPhotoOpen: false,
-      webCamFileUrl: '',
+      webCamData: '',
+      verified: false,
     }
 
     this.loadWeb3 = this.loadWeb3.bind(this)
@@ -102,6 +104,8 @@ class CharityRequest extends Component {
     this.handleVerificationModalClose = this.handleVerificationModalClose.bind(this)
     this.setclickPhotoOpenTrue = this.setclickPhotoOpenTrue.bind(this)
     this.toggleClickPhotoOpen = this.toggleClickPhotoOpen.bind(this)
+    this.callVerifyApi = this.callVerifyApi.bind(this)
+    this.showModalForVerification = this.showModalForVerification.bind(this)
   }
 
   toggle(tab) {
@@ -178,6 +182,26 @@ class CharityRequest extends Component {
     this.setState({clickPhotoOpen: !this.state.clickPhotoOpen})
   }
 
+  showModalForVerification() {
+    this.setState({showVerificationModal: true})
+  }
+
+  callVerifyApi() {
+    if (!this.idData ||  !this.state.webCamData) return 
+
+    fetch('http://localhost:5000/verify', { 
+      method: 'POST',
+      body: {
+        id: this.idData, 
+        face: this.state.webCamData
+      }
+    })
+    .then(res => res.json())
+    .then(res => {
+      if (res.success) this.setState({ verified: true, showVerificationModal: false})
+    })
+    .catch(err => alert('Error occured, try again later'))
+  }
 
   render() {
     return (
@@ -193,13 +217,14 @@ class CharityRequest extends Component {
               <Modal.Body>
                 <Form onSubmit={(event) => {
                   event.preventDefault()
+                  this.callVerifyApi()
                 }} className="main-form">
                   <FormGroup>
                     {
                       this.state.clickPhotoOpen ? <WebcamCapture
                         sendImage={r => {
+                          this.setState({ webCamData: r})
                           this.toggleClickPhotoOpen()
-                          if (this.idFile) console.log(this.idFile.value)
                       }}
                         capture={true}
                       /> : null
@@ -213,7 +238,8 @@ class CharityRequest extends Component {
                   <FormGroup>
                     <Label htmlFor="name" className="form-label">Identity card</Label>
                     <Input type="file" id="id" name="id"
-                      innerRef={(input) => this.idFile = input} placeholder="Id card"
+                      innerRef={input => input && input.files[0] ? this.idData = input.files[0] : null} 
+                      placeholder="Id card"
                     />
                   </FormGroup>
                   <Button className="form-btn" type="submit" value="submit" color="primary">Verify</Button>
@@ -259,12 +285,12 @@ class CharityRequest extends Component {
             <Form onSubmit={ async (event) => {
               event.preventDefault()
               const name = this.requestDName.value
-              //const price = window.web3.utils.toWei(this.requestPrice.value.toString(), 'Ether') || 0
+              // const price = window.web3.utils.toWei(this.requestPrice.value.toString(), 'Ether') || 0
               const price = rsk3.utils.toWei(this.requestPrice.value.toString(), 'ether')//this.requestPrice.value.toString();
               const category = this.requestCategory.value
               const story = this.requestStory.value
               const image = this.requestPTPImage.value
-              //const gas = await rsk3.getBalance('0xcCE31Caabbc11e5EC5C26897743015291b5C4FFC');
+              // const gas = await rsk3.getBalance('0xcCE31Caabbc11e5EC5C26897743015291b5C4FFC');
               console.log('name',name,'price', price,'category', category,'story', story,'image', image);
               this.createRequest(name, price, category, story, image)
             }} className="main-form">
@@ -306,7 +332,11 @@ class CharityRequest extends Component {
                   Upload your image posted on any social media
                 </FormText>
               </FormGroup>
-              <Button className="form-btn" type="submit" value="submit" color="primary">Submit</Button>
+              {
+                this.state.verified ? 
+                <Button className="form-btn" type="submit" value="submit" color="primary">Submit</Button> :
+                <Button className="form-btn" color="primary" onClick={this.showModalForVerification}>Process</Button> 
+              }
             </Form>
           </TabPane>
           <TabPane tabId="2">
@@ -317,7 +347,6 @@ class CharityRequest extends Component {
               const raiseGoal = this.raiseGoal.value
               const cause = this.requestCause.value
               const image = this.requestImage.value
-              console.log(name, symbol, raiseGoal, cause, image);
               this.raiseFund(raiseGoal, image, cause)
             }} className="main-form">
               <FormGroup>

@@ -1,18 +1,20 @@
+from flask import request
+from flask import jsonify, json
+import cv2
+
 from app import app
-
 from .image_utils import *
-
-
-@app.route('/index')
-def index():
-    return "Welcome to deverify!"
 
 
 @app.route('/verify', methods=['POST'])
 def verify_images():
     if request.method == 'POST':
-        id_image = request.files['id']
-        face_image = request.files['face']
+        print(request.json)
+        print(request.files)
+        return jsonify({'success': 'true'})
+        
+        id_image = request.json['id']
+        face_image = request.json['face']
 
         id_image_resized = resize_img(id_image, (225, 225))
         face_image_resized = resize_img(face_image, (225, 225))
