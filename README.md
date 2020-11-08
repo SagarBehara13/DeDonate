@@ -1,4 +1,4 @@
-# #bablyon hackthon
+# #post covid hack 2020 hackthon
 <h1 align="center">DeDonate</h1>
 DeDonate, a decentralized platform for donation via the RSK blockchain. It allows users to donate peer-to-peer, removing the frauds and faulty corrupted middleman and keeping the donation related activity anonymous.<br><br>
 <h2 align="center">Peer-to-Peer Connection</h2>
