@@ -144,7 +144,6 @@ class CharityRequest extends Component {
       .once('receipt', (receipt) => {
         this.setState({ loading: false })
       })
-    //this.setState({ loading: false })
   }
 
   handleVerificationModalClose() {
@@ -198,7 +197,9 @@ class CharityRequest extends Component {
     })
     .then(res => res.json())
     .then(res => {
-      if (res.success) this.setState({ verified: true, showVerificationModal: false})
+      if (res.success) {
+        this.setState({ verified: true, showVerificationModal: false}, () => window.alert('Verification successful'))
+      }
     })
     .catch(err => alert('Error occured, try again later'))
   }
@@ -290,8 +291,6 @@ class CharityRequest extends Component {
               const category = this.requestCategory.value
               const story = this.requestStory.value
               const image = this.requestPTPImage.value
-              // const gas = await rsk3.getBalance('0xcCE31Caabbc11e5EC5C26897743015291b5C4FFC');
-              console.log('name',name,'price', price,'category', category,'story', story,'image', image);
               this.createRequest(name, price, category, story, image)
             }} className="main-form">
               <FormGroup>
@@ -333,8 +332,9 @@ class CharityRequest extends Component {
                 </FormText>
               </FormGroup>
               {
-                this.state.verified ? 
-                <Button className="form-btn" type="submit" value="submit" color="primary">Submit</Button> :
+                this.state.verified ?
+                <Button className="form-btn" type="submit" value="submit" color="primary">Submit</Button>
+                :
                 <Button className="form-btn" color="primary" onClick={this.showModalForVerification}>Process</Button> 
               }
             </Form>
@@ -342,8 +342,8 @@ class CharityRequest extends Component {
           <TabPane tabId="2">
             <Form onSubmit={(event) => {
               event.preventDefault()
-              const name = this.requestCName.value
-              const symbol = "DDN"//this.requestSymbol.value
+              // const name = this.requestCName.value
+              // const symbol = "DDN"//this.requestSymbol.value
               const raiseGoal = this.raiseGoal.value
               const cause = this.requestCause.value
               const image = this.requestImage.value
