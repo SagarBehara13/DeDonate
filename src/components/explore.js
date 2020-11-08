@@ -15,11 +15,13 @@ const Explore = (props) => {
   }
 
   const handleClose = () => setShow(false);
+
   const handleShow = () => {
     setShow(true);
   }
+
   function handleChange(event){
-    console.log(event);
+    // COMMENT: Not used yet.
   }
 
   return (
@@ -33,7 +35,7 @@ const Explore = (props) => {
             event.preventDefault()
             const ids = charityId
             const value = amount.value
-            console.log(ids, value)
+
             // this.donateToCharity(ids, value)
           }} className="main-form">
             <FormGroup>
@@ -85,7 +87,6 @@ const Explore = (props) => {
                 let donator
 
                 if(request.owner === request.donator){
-                  console.log("c seller", true);
                   donator = "No Donator"
                 } else {
                   donator = request.donator
@@ -97,7 +98,7 @@ const Explore = (props) => {
                         <img width="130px" height="130px" src={ request.image } alt="Card cap" className="card-image"/>
                         <div className="header-card-content">
                           <p className="name">Name: { request.name }</p>
-                          <p className="price">Amount: { window.web3.utils.fromWei(request.price.toString(), 'Ether') } Eth</p>
+                          <p className="price">Amount: { window.web3.utils.fromWei(request.price.toString(), 'Ether') } RBTC</p>
                             {
                               !request.donated
                               ? <Button
@@ -106,6 +107,7 @@ const Explore = (props) => {
                                   id={request.id}
                                   value={request.price}
                                   onClick={(event) => {
+                                    //console.log(event.target)
                                     props.fullFillRequest(event.target.id, event.target.value)
                                   }}
                                 >
@@ -131,7 +133,6 @@ const Explore = (props) => {
                   let status
 
                   if(request.live === false){
-                    console.log("c seller", true);
                     status = "Closed"
                   } else {
                     status = "Live"
