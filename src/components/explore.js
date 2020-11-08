@@ -1,25 +1,62 @@
 import React, { useState } from "react";
 import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardImg, CardSubtitle, CardText, Row, Col, CardBody, Form, FormGroup, Label, Input, FormText, FormFeedback } from 'reactstrap';
 import classnames from 'classnames';
+import {Modal} from "react-bootstrap";
 // import logo from '../images/logo.jpeg';
 
-
+let amount = {};
 const Explore = (props) => {
   const [activeTab, setActiveTab] = useState('1');
+  const [show, setShow] = useState(false);
+  const [charityId, setCharityId] = useState('');
 
   const toggle = tab => {
     if(activeTab !== tab) setActiveTab(tab);
   }
 
-  console.log("ppp",props.requests);
+  const handleClose = () => setShow(false);
+  const handleShow = () => {
+    setShow(true);
+  }
+  function handleChange(event){
+    console.log(event);
+  }
+
   return (
     <div className="container bg explore-main">
-      {/*<div className="row">*/}
-      {/*    <div className="col-12">*/}
-      {/*      <h3 className="exp-heading">Select the criteria from below tabs whom you would like to donate to..</h3>*/}
-      {/*      <hr />*/}
-      {/*    </div>*/}
-      {/*</div>*/}
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form onSubmit={(event) => {
+            event.preventDefault()
+            const ids = charityId
+            const value = amount.value
+            console.log(ids, value)
+            // this.donateToCharity(ids, value)
+          }} className="main-form">
+            <FormGroup>
+              <Label htmlFor="name" className="form-label">Charity Id</Label>
+              <Input type="text" id="ids" name="name" placeholder="Charity ID" disabled={'disabled'} value={charityId}/>
+            </FormGroup>
+            <FormGroup>
+              <Label htmlFor="name" className="form-label">Amount</Label>
+              <Input type="number" id="requestValue" name="name"
+                     innerRef={(input) => {amount = input}}
+                     placeholder="Donation Amount"
+              />
+            </FormGroup>
+            <Button className="form-btn" type="submit" value="submit" color="primary">Donate</Button>
+          </Form>
+        </Modal.Body>
+      </Modal>
+      <Button variant="primary" onClick={() => {
+        setCharityId('122knkqwd');
+        setShow(true);
+      }}>
+        Launch demo modal
+      </Button>
       <div className="row">
       <div className="col-12">
       <Nav tabs>
@@ -111,7 +148,17 @@ const Explore = (props) => {
                             <p className="name">Amount: { request.raiseGoal.toString() } $</p>
                             <p className="name">Amount Raised: { request.ammountRaised.toString() }</p>
                             <p className="name">Status: { status }</p>
-                            <p> Visit The Requests For Fund Raising</p>
+                            <Button
+                                color="info"
+                                className="donate-btn"
+                                id={request.id}
+                                value={request.price}
+                                onClick={() => {
+                                  setCharityId(request.id)
+                                  setShow(true);
+                                }}
+                            >
+                              Donate Now</Button>
                           </div>
                         </div>
                           <div className="body-card">
