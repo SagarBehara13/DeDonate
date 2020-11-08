@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import image from '../images/organizationjpeg.jpg';
+import image1 from '../images/peer-to-peerjpeg.jpg'
 import MetaMaskLoginButton from 'react-metamask-login-button';
 import '../stylesheet/style.css'
 import Particles from 'react-particles-js';
@@ -112,13 +113,10 @@ class Home extends Component {
           <div className="main-home container">
             <div className="row sub-head">
               <div className="col main-content">
-                <h4 className="content1"><span className="brand-highlight">DeDonate</span> is a decentralized platform for donation via the <strong>Ethereum</strong> blockchain. It allows people to donate to peers directly thus removing the frauds and faulty corrupted middleman and keeping the donation related activity anonymous!!</h4>
-                <h3 className="content2">It allows charitable organizations to raise funds for their charitable activity through Ethereum blockchain.</h3>
+                <h4 className="content1"><span className="brand-highlight">DeDonate</span> will help people to donate to a person directly thus removing the frauds and faulty corrupted middleman. It helps charitable org to raise funds for social cause with help of rsk blockchain.</h4>
+                <h3 className="content2">It allows charitable organizations to raise funds for their charitable activity through RSK blockchain.</h3>
               </div>
             </div>
-            {/*<div className="row metamask-btn">*/}
-            {/*  <MetaMaskLoginButton />*/}
-            {/*</div>*/}
             <div className="btn-row">
               <div className="">
                 <Link to={`/explore`}>
@@ -139,66 +137,23 @@ class Home extends Component {
               <img width="100%" src={image} className='internal-image'></img>
             </div>
             <div className='zig-zag-row-content'>
-              <p className='internal-content'>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-              when an unknown printer took a galley of type and scrambled it to make a
-              type specimen book. It has survived not only five centuries, but also the
-              leap into electronic typesetting, remaining essentially unchanged.
-              It was popularised in the 1960s with the release of Letraset sheets containing
-              Lorem Ipsum passages, and more recently with desktop publishing software
-                    like Aldus PageMaker including versions of Lorem Ipsum</p>
+              <p className='internal-content'>
+                <h3 className="brand-highlight">DeDeonate Charity</h3>
+                DeDonate charity request module helps organizations to raise funds and in return the users receive DDN Token as rewards.</p>
             </div>
           </div>
           <div className='zig-zag-row'>
             <div className='zig-zag-row-content'>
-              <p className='internal-content'>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-              when an unknown printer took a galley of type and scrambled it to make a
-              type specimen book. It has survived not only five centuries, but also the
-              leap into electronic typesetting, remaining essentially unchanged.
-              It was popularised in the 1960s with the release of Letraset sheets containing
-              Lorem Ipsum passages, and more recently with desktop publishing software
-                    like Aldus PageMaker including versions of Lorem Ipsum</p>
+              <p className='internal-content'>
+                <h3 className="brand-highlight">DeDeonate Peer-to-Peer</h3>
+                DeDonate peer to peer module eliminates the faulty middleman from the charity system, by making the donations between users individually.
+                Donator donates to requester directly to his address and thus the keeping the donation anonymous.</p>
             </div>
             <div className='zig-zag-row-image'>
-              <img width="100%" src={image} className='internal-image'></img>
+              <img width="100%" src={image1} className='internal-image'></img>
             </div>
           </div>
-          <div className='zig-zag-row'>
-            <div className='zig-zag-row-image'>
-              <img width="100%" src={image} className='internal-image'></img>
-            </div>
-            <div className='zig-zag-row-content'>
-              <p className='internal-content'>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-              when an unknown printer took a galley of type and scrambled it to make a
-              type specimen book. It has survived not only five centuries, but also the
-              leap into electronic typesetting, remaining essentially unchanged.
-              It was popularised in the 1960s with the release of Letraset sheets containing
-              Lorem Ipsum passages, and more recently with desktop publishing software
-                    like Aldus PageMaker including versions of Lorem Ipsum</p>
-            </div>
-          </div>
-          <div className='zig-zag-row'>
-            <div className='zig-zag-row-content'>
-              <p className='internal-content'>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-              when an unknown printer took a galley of type and scrambled it to make a
-              type specimen book. It has survived not only five centuries, but also the
-              leap into electronic typesetting, remaining essentially unchanged.
-              It was popularised in the 1960s with the release of Letraset sheets containing
-              Lorem Ipsum passages, and more recently with desktop publishing software
-                    like Aldus PageMaker including versions of Lorem Ipsum</p>
-            </div>
-            <div className='zig-zag-row-image'>
-              <img width="100%" src={image} className='internal-image'></img>
-            </div>
-          </div>
-
         </div>
-        {/*<div className="image">*/}
-        {/*  <img width="100%" src={image}></img>*/}
-        {/*</div>*/}
       </div>
     );
   }
