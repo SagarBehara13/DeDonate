@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Web3 from 'web3';
 import classnames from 'classnames';
-import { TabContent, Button, Form, FormGroup, Label, Input, FormText, FormFeedback, Nav, NavItem, NavLink, TabPane } from 'reactstrap';
+import { TabContent, Button, Form, FormGroup, Label, Input, FormText, Nav, NavItem, NavLink, TabPane } from 'reactstrap';
 import Donation from '../abis/Donation.json'
 import CharityContract from '../abis/CharityToken.json'
 import { Modal } from "react-bootstrap";
@@ -46,14 +46,13 @@ class CharityRequest extends Component {
 
       const requestCount = await donation.methods.requestCount().call()
       const charityRequestCount = await charity.methods.charityRequestCount().call()
-      console.log("requestCount", requestCount.toString());
-      console.log("charityRequestCount", charityRequestCount.toString());
+   
       this.setState({ requestCount })
       this.setState({ charityRequestCount })
 
       for (var i = 1; i <= requestCount; i++) {
         const request = await donation.methods.requests(i).call()
-        console.log("req", request);
+       
         this.setState({
           requests: [...this.state.requests, request]
         })
@@ -61,15 +60,13 @@ class CharityRequest extends Component {
 
       for (var j = 1; j <= charityRequestCount; j++) {
         const onGoingCharities = await charity.methods.onGoingCharity(j).call()
-        console.log("onG", onGoingCharities, j);
+        
         this.setState({
           charityRequests: [...this.state.charityRequests, onGoingCharities]
         })
       }
 
       this.setState({ loading: false })
-      console.log('peer requests', this.state.requests);
-      console.log('charityRequests', this.state.charityRequests);
     } else {
       window.alert("Donation contract is not deployed to detected network")
     }
@@ -86,7 +83,8 @@ class CharityRequest extends Component {
       loading: true,
       activeTab: "1",
       showVerificationModal: false,
-      clickPhotoOpen: false
+      clickPhotoOpen: false,
+      webCamFileUrl: '',
     }
 
     this.loadWeb3 = this.loadWeb3.bind(this)
@@ -197,9 +195,8 @@ class CharityRequest extends Component {
                     {
                       this.state.clickPhotoOpen ? <WebcamCapture
                         sendImage={r => {
-                          console.log('Type of result', typeof r)
                           this.toggleClickPhotoOpen()
-                          // setcapture(false)
+                          if (this.idFile) console.log(this.idFile.value)
                       }}
                         capture={true}
                       /> : null
@@ -258,16 +255,16 @@ class CharityRequest extends Component {
               <TabPane tabId="1">
                 <Form onSubmit={(event) => {
                   event.preventDefault()
-                  this.setState({ showVerificationModal: true })
-                  // const name = this.requestDName.value
-                  // const price = window.web3.utils.toWei(this.requestPrice.value.toString(), 'Ether') || 0
+                  // this.setState({ showVerificationModal: true })
+                  const name = this.requestDName.value
+                  const price = window.web3.utils.toWei(this.requestPrice.value.toString(), 'Ether') || 0
                   // const price = this.requestPrice.value.toString();
-                  // const category = this.requestCategory.value
-                  // const story = this.requestStory.value
-                  // const image = this.requestPTPImage.value
-                  // console.log('name', name, 'price', price, 'category', category, 'story', story, 'image', image);
+                  const category = this.requestCategory.value
+                  const story = this.requestStory.value
+                  const image = this.requestPTPImage.value
+                  
                   // if (this.state.verificationResult) {
-                  // this.createRequest(name, price, category, story, image)
+                  this.createRequest(name, price, category, story, image)
                   // }
                 }} className="main-form">
                   <FormGroup>
@@ -302,12 +299,12 @@ class CharityRequest extends Component {
               <TabPane tabId="2">
                 <Form onSubmit={(event) => {
                   event.preventDefault()
-                  const name = this.requestCName.value
-                  const symbol = "DDN"//this.requestSymbol.value
+                  // const name = this.requestCName.value
+                  // const symbol = "DDN"//this.requestSymbol.value
                   const raiseGoal = this.raiseGoal.value
                   const cause = this.requestCause.value
                   const image = this.requestImage.value
-                  console.log(name, symbol, raiseGoal, cause, image);
+
                   this.raiseFund(raiseGoal, image, cause)
                 }} className="main-form">
                   <FormGroup>
@@ -350,7 +347,7 @@ class CharityRequest extends Component {
                   event.preventDefault()
                   const address = this.deployerAddress.value
                   const value = this.requestAValue.value
-                  console.log(address, value);
+
                   this.approve(address, value)
                 }} className="main-form">
                   <FormGroup>
@@ -374,7 +371,7 @@ class CharityRequest extends Component {
                   event.preventDefault()
                   const id = this.id.value
                   const value = this.requestValue.value
-                  console.log(id, value)
+
                   this.donateToCharity(id, value)
                 }} className="main-form">
                   <FormGroup>

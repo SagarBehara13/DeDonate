@@ -15,11 +15,13 @@ const Explore = (props) => {
   }
 
   const handleClose = () => setShow(false);
+
   const handleShow = () => {
     setShow(true);
   }
+
   function handleChange(event){
-    console.log(event);
+    // COMMENT: Not used yet.
   }
 
   return (
@@ -33,7 +35,7 @@ const Explore = (props) => {
             event.preventDefault()
             const ids = charityId
             const value = amount.value
-            console.log(ids, value)
+
             // this.donateToCharity(ids, value)
           }} className="main-form">
             <FormGroup>
@@ -85,7 +87,6 @@ const Explore = (props) => {
                 let donator
 
                 if(request.owner === request.donator){
-                  console.log("c seller", true);
                   donator = "No Donator"
                 } else {
                   donator = request.donator
@@ -131,7 +132,6 @@ const Explore = (props) => {
                   let status
 
                   if(request.live === false){
-                    console.log("c seller", true);
                     status = "Closed"
                   } else {
                     status = "Live"

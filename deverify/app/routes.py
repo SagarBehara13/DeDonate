@@ -1,6 +1,6 @@
 from app import app
 
-from image_utils import *
+from .image_utils import *
 
 
 @app.route('/index')

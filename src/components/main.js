@@ -48,14 +48,13 @@ class Main extends Component {
 
       const requestCount = await donation.methods.requestCount().call()
       const charityRequestCount = await charity.methods.charityRequestCount().call()
-      console.log("requestCount", requestCount.toString());
-      console.log("charityRequestCount", charityRequestCount.toString());
+
       this.setState({ requestCount })
       this.setState({ charityRequestCount })
 
       for(var i = 1; i <= requestCount; i++){
         const request = await donation.methods.requests(i).call()
-        //console.log("req",request);
+        
         this.setState({
           requests: [...this.state.requests, request]
         })
@@ -63,15 +62,14 @@ class Main extends Component {
 
       for(var j = 1; j <= charityRequestCount; j++){
         const onGoingCharities = await charity.methods.onGoingCharity(j).call()
-        //console.log("onG",onGoingCharities, j);
+     
         this.setState({
           charityRequests: [...this.state.charityRequests, onGoingCharities]
         })
       }
 
       this.setState({ loading: false })
-      // console.log('peer requests', this.state.requests);
-      // console.log('charityRequests', this.state.charityRequests);
+      
     } else {
       window.alert("Donation contract is not deployed to detected network")
     }
@@ -106,7 +104,6 @@ class Main extends Component {
   }
 
   fullFillRequest(id, price) {
-    console.log(id, price);
     this.setState({ loading: true })
     this.state.donation.methods.fullFillRequest(id).send({ from: this.state.account, value: price })
     .once('receipt', (receipt) => {

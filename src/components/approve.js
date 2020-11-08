@@ -10,8 +10,7 @@ const Approve = (props) => {
   const toggle = tab => {
     if(activeTab !== tab) setActiveTab(tab);
   }
-  //
-  // console.log("ppp",props.requests);
+  
   return (
     <div className="container bg explore-main">
       <div className="row">
