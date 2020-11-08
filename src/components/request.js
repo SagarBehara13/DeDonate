@@ -7,7 +7,7 @@ import Donation from '../abis/Donation.json'
 import CharityContract from '../abis/CharityToken.json'
 import { Modal } from "react-bootstrap";
 import { WebcamCapture } from "./WebcamCapture";
-
+import {getRBTCprice} from '../api/gecko'
 
 const rsk3 = new Rsk3('https://public-node.testnet.rsk.co')
 
@@ -89,6 +89,8 @@ class CharityRequest extends Component {
       showVerificationModal: false,
       clickPhotoOpen: false,
       webCamData: '',
+      usdValue: 0,
+      coinValue: 0,
       verified: false,
     }
 
@@ -106,6 +108,7 @@ class CharityRequest extends Component {
     this.toggleClickPhotoOpen = this.toggleClickPhotoOpen.bind(this)
     this.callVerifyApi = this.callVerifyApi.bind(this)
     this.showModalForVerification = this.showModalForVerification.bind(this)
+    this.handleUSDAmountChange = this.handleUSDAmountChange.bind(this)
   }
 
   toggle(tab) {
@@ -185,15 +188,24 @@ class CharityRequest extends Component {
     this.setState({showVerificationModal: true})
   }
 
+
+  async handleUSDAmountChange(event) {
+    const val = event.target.value
+    const res = await getRBTCprice().catch(err => console.log(err))
+
+    this.setState({ usdValue: val, coinValue: Number(Number(Number(val) / res).toFixed(4))})
+  }
+
   callVerifyApi() {
     if (!this.idData ||  !this.state.webCamData) return 
 
-    fetch('http://localhost:5000/verify', { 
+    const formData = new FormData()
+    formData.append('id', this.idData)
+    formData.append('face', this.state.webCamData)
+
+    fetch('http://localhost:8000/verify', { 
       method: 'POST',
-      body: {
-        id: this.idData, 
-        face: this.state.webCamData
-      }
+      body: formData
     })
     .then(res => res.json())
     .then(res => {
@@ -287,7 +299,7 @@ class CharityRequest extends Component {
               event.preventDefault()
               const name = this.requestDName.value
               // const price = window.web3.utils.toWei(this.requestPrice.value.toString(), 'Ether') || 0
-              const price = rsk3.utils.toWei(this.requestPrice.value.toString(), 'ether')//this.requestPrice.value.toString();
+              const price = rsk3.utils.toWei(this.state.coinValue.toString(), 'ether')//this.requestPrice.value.toString();
               const category = this.requestCategory.value
               const story = this.requestStory.value
               const image = this.requestPTPImage.value
@@ -319,9 +331,16 @@ class CharityRequest extends Component {
                 />
               </FormGroup>
               <FormGroup>
-                <Label htmlFor="story" className="form-label">Donation Amount</Label>
+                <Label htmlFor="story" className="form-label">Donation Amount in USD</Label>
                 <Input type="text" rows={3} columns={50} name="story" id="requestPrice"
-                       innerRef={(input) => this.requestPrice = input} placeholder="amount"
+                      onChange={this.handleUSDAmountChange} value={this.state.usdValue} placeholder="Enter amount"
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label htmlFor="story" className="form-label">Donation Amount in RBTC</Label>
+                <Input type="text" rows={3} columns={50} name="story" id="requestPrice"
+                      value={this.state.coinValue} disabled={true}
+                      placeholder="Amount in RBTC will automatically come here."
                 />
               </FormGroup>
               <FormGroup>
@@ -389,7 +408,6 @@ class CharityRequest extends Component {
                   event.preventDefault()
                   const address = this.deployerAddress.value
                   const value = this.requestAValue.value
-
                   this.approve(address, value)
                 }} className="main-form">
                   <FormGroup>

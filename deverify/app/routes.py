@@ -1,6 +1,9 @@
+import base64
+
+import cv2
+import numpy
 from flask import request
 from flask import jsonify, json
-import cv2
 
 from app import app
 from .image_utils import *
@@ -9,12 +12,9 @@ from .image_utils import *
 @app.route('/verify', methods=['POST'])
 def verify_images():
     if request.method == 'POST':
-        print(request.json)
-        print(request.files)
+        id_image = cv2.imdecode(numpy.fromstring(request.files.get('id', None).read(), numpy.uint8), cv2.IMREAD_UNCHANGED)
+
         return jsonify({'success': 'true'})
-        
-        id_image = request.json['id']
-        face_image = request.json['face']
 
         id_image_resized = resize_img(id_image, (225, 225))
         face_image_resized = resize_img(face_image, (225, 225))
