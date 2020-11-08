@@ -98,7 +98,7 @@ const Explore = (props) => {
                         <img width="130px" height="130px" src={ request.image } alt="Card cap" className="card-image"/>
                         <div className="header-card-content">
                           <p className="name">Name: { request.name }</p>
-                          <p className="price">Amount: { window.web3.utils.fromWei(request.price.toString(), 'Ether') } Eth</p>
+                          <p className="price">Amount: { window.web3.utils.fromWei(request.price.toString(), 'Ether') } RBTC</p>
                             {
                               !request.donated
                               ? <Button
@@ -107,6 +107,7 @@ const Explore = (props) => {
                                   id={request.id}
                                   value={request.price}
                                   onClick={(event) => {
+                                    //console.log(event.target)
                                     props.fullFillRequest(event.target.id, event.target.value)
                                   }}
                                 >

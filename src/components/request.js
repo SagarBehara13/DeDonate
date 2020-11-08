@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Web3 from 'web3';
+import Rsk3 from '@rsksmart/rsk3';
 import classnames from 'classnames';
 import { TabContent, Button, Form, FormGroup, Label, Input, FormText, Nav, NavItem, NavLink, TabPane } from 'reactstrap';
 import Donation from '../abis/Donation.json'
@@ -7,6 +8,8 @@ import CharityContract from '../abis/CharityToken.json'
 import { Modal } from "react-bootstrap";
 import { WebcamCapture } from "./WebcamCapture";
 
+
+const rsk3 = new Rsk3('https://public-node.testnet.rsk.co')
 
 class CharityRequest extends Component {
 
@@ -249,87 +252,97 @@ class CharityRequest extends Component {
                 >
                   Donate To Charity
              </NavLink>
-              </NavItem>
-            </Nav>
-            <TabContent activeTab={this.state.activeTab}>
-              <TabPane tabId="1">
-                <Form onSubmit={(event) => {
-                  event.preventDefault()
-                  // this.setState({ showVerificationModal: true })
-                  const name = this.requestDName.value
-                  const price = window.web3.utils.toWei(this.requestPrice.value.toString(), 'Ether') || 0
-                  // const price = this.requestPrice.value.toString();
-                  const category = this.requestCategory.value
-                  const story = this.requestStory.value
-                  const image = this.requestPTPImage.value
-                  
-                  // if (this.state.verificationResult) {
-                  this.createRequest(name, price, category, story, image)
-                  // }
-                }} className="main-form">
-                  <FormGroup>
-                    <Label htmlFor="name" className="form-label">Full Name</Label>
-                    <Input type="text" id="requestDName" name="requestDName" innerRef={(input) => { this.requestDName = input; }} placeholder="Enter your name here"
-                    />
-                  </FormGroup>
-                  <FormGroup>
-                    <Label htmlFor="criteria" className="form-label">Criteria</Label>
-                    <Input type="select" name="criteria" id="requestCategory" innerRef={(input) => { this.requestCategory = input; }}>
-                      <option>Education</option>
-                      <option>Sports</option>
-                      <option>Others</option>
-                    </Input>
-                  </FormGroup>
-                  <FormGroup>
-                    <Label htmlFor="story" className="form-label">Tell us about yourself</Label>
-                    <Input type="textarea" rows={3} columns={50} name="story" id="requestStory" innerRef={(input) => this.requestStory = input} placeholder="Describe in short why you need this" maxLength={200} />
-                  </FormGroup>
-                  <FormGroup>
-                    <Label htmlFor="story" className="form-label">Donation Amount</Label>
-                    <Input type="number" rows={3} columns={50} name="story" id="requestPrice" innerRef={(input) => this.requestPrice = input} placeholder="amount" />
-                  </FormGroup>
-                  <FormGroup>
-                    <Label htmlFor="exampleFile" className="form-label">Image Url</Label>
-                    <Input type="text" name="photo" id="requestPTPImage" innerRef={(input) => this.requestPTPImage = input} placeholder="image" />
-                    <FormText color="muted">Upload your image posted on any social media</FormText>
-                  </FormGroup>
-                  <Button className="form-btn" type="submit" value="submit" color="primary">Submit</Button>
-                </Form>
-              </TabPane>
-              <TabPane tabId="2">
-                <Form onSubmit={(event) => {
-                  event.preventDefault()
-                  // const name = this.requestCName.value
-                  // const symbol = "DDN"//this.requestSymbol.value
-                  const raiseGoal = this.raiseGoal.value
-                  const cause = this.requestCause.value
-                  const image = this.requestImage.value
-
-                  this.raiseFund(raiseGoal, image, cause)
-                }} className="main-form">
-                  <FormGroup>
-                    <Label htmlFor="name" className="form-label">Charity Name</Label>
-                    <Input type="text" id="requestCName" name="name"
-                      innerRef={(input) => this.requestCName = input} placeholder="Enter charity name here"
-                    />
-                  </FormGroup>
-                  {/* <FormGroup>
+           </NavItem>
+         </Nav>
+         <TabContent activeTab={this.state.activeTab}>
+          <TabPane tabId="1">
+            <Form onSubmit={ async (event) => {
+              event.preventDefault()
+              const name = this.requestDName.value
+              //const price = window.web3.utils.toWei(this.requestPrice.value.toString(), 'Ether') || 0
+              const price = rsk3.utils.toWei(this.requestPrice.value.toString(), 'ether')//this.requestPrice.value.toString();
+              const category = this.requestCategory.value
+              const story = this.requestStory.value
+              const image = this.requestPTPImage.value
+              //const gas = await rsk3.getBalance('0xcCE31Caabbc11e5EC5C26897743015291b5C4FFC');
+              console.log('name',name,'price', price,'category', category,'story', story,'image', image);
+              this.createRequest(name, price, category, story, image)
+            }} className="main-form">
+              <FormGroup>
+                <Label htmlFor="name" className="form-label">Full Name</Label>
+                <Input type="text" id="requestDName" name="requestDName"
+                  innerRef={(input) => {
+                    this.requestDName = input;
+                  }} placeholder="Enter your name here"
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label htmlFor="criteria" className="form-label">Criteria</Label>
+                <Input type="select" name="criteria" id="requestCategory"
+                       innerRef={(input) => {
+                         this.requestCategory = input;
+                       }}>
+                  <option>Education</option>
+                  <option>Sports</option>
+                  <option>Others</option>
+                </Input>
+              </FormGroup>
+              <FormGroup>
+                <Label htmlFor="story" className="form-label">Tell us about yourself</Label>
+                <Input type="textarea" rows={3} columns={50} name="story" id="requestStory"
+                       innerRef={(input) => this.requestStory = input} placeholder="Describe in short why you need this" maxLength={200}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label htmlFor="story" className="form-label">Donation Amount</Label>
+                <Input type="text" rows={3} columns={50} name="story" id="requestPrice"
+                       innerRef={(input) => this.requestPrice = input} placeholder="amount"
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label htmlFor="exampleFile" className="form-label">Image Url</Label>
+                <Input type="text" name="photo" id="requestPTPImage" innerRef={(input) => this.requestPTPImage = input} placeholder="image"/>
+                <FormText color="muted">
+                  Upload your image posted on any social media
+                </FormText>
+              </FormGroup>
+              <Button className="form-btn" type="submit" value="submit" color="primary">Submit</Button>
+            </Form>
+          </TabPane>
+          <TabPane tabId="2">
+            <Form onSubmit={(event) => {
+              event.preventDefault()
+              const name = this.requestCName.value
+              const symbol = "DDN"//this.requestSymbol.value
+              const raiseGoal = this.raiseGoal.value
+              const cause = this.requestCause.value
+              const image = this.requestImage.value
+              console.log(name, symbol, raiseGoal, cause, image);
+              this.raiseFund(raiseGoal, image, cause)
+            }} className="main-form">
+              <FormGroup>
+                <Label htmlFor="name" className="form-label">Charity Name</Label>
+                <Input type="text" id="requestCName" name="name"
+                    innerRef={(input) => this.requestCName = input} placeholder="Enter charity name here"
+                />
+              </FormGroup>
+              {/* <FormGroup>
                 <Label htmlFor="name" className="form-label">Symbol</Label>
                 <Input type="text" id="requestSymbol" name="name"
                     innerRef={(input) => this.requestSymbol = input} placeholder="Enter desired token symbol"
                 />
               </FormGroup> */}
-                  <FormGroup>
-                    <Label htmlFor="name" className="form-label">Raise Goal</Label>
-                    <Input type="text" id="raiseGoal" name="name"
-                      innerRef={(input) => this.raiseGoal = input} placeholder="Enter the amount to be raised by the charity"
-                    />
-                  </FormGroup>
-                  <FormGroup>
-                    <Label htmlFor="exampleFile" className="form-label">Cause</Label>
-                    <Input type="text" name="photo" id="requestCause" innerRef={(input) => this.requestCause = input} />
-                    <FormText color="muted">
-                      Reason for fund raising
+              <FormGroup>
+                <Label htmlFor="name" className="form-label">Raise Goal</Label>
+                <Input type="text" id="raiseGoal" name="name"
+                    innerRef={(input) => this.raiseGoal = input} placeholder="Enter the amount in RBTC to be raised by the charity"
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label htmlFor="exampleFile" className="form-label">Cause</Label>
+                <Input type="text" name="photo" id="requestCause" innerRef={(input) => this.requestCause = input}/>
+                <FormText color="muted">
+                  Reason for fund raising
                 </FormText>
                   </FormGroup>
                   <FormGroup>
