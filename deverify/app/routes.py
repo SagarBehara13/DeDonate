@@ -13,8 +13,7 @@ from .image_utils import *
 def verify_images():
     if request.method == 'POST':
         id_image = cv2.imdecode(numpy.fromstring(request.files.get('id', None).read(), numpy.uint8), cv2.IMREAD_UNCHANGED)
-
-        return jsonify({'success': 'true'})
+        face_image = base64.decodestring(request.form.get('face', ''))
 
         id_image_resized = resize_img(id_image, (225, 225))
         face_image_resized = resize_img(face_image, (225, 225))
